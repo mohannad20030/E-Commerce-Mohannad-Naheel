@@ -165,5 +165,61 @@ function displayOrderSummary(products) {
 
 
 
-// Call the function.
+// Create a function called validateform
+function validateform() {
+
+    // Get the checkout form from HTML
+    const form = document.getElementById("checkout-form");
+
+    // Get the Place Order button
+    const button = document.getElementById("place-order-button");
+
+    // Get all inputs that have the required attribute
+    const inputs = form.querySelectorAll("input[required]");
+
+
+    // Check each required input
+    inputs.forEach(function(input) {
+
+        // Listen for when the user leaves an input
+        input.addEventListener("blur", function() {
+
+            // Check if the input is empty or invalid
+            if (!input.checkValidity()) {
+
+                // Display the browser's validation message
+                input.reportValidity();
+
+            }
+
+        });
+
+    });
+
+
+    // Function to check whether the entire form is valid
+    function checkForm() {
+
+        // Disable the button if the form is invalid
+        button.disabled = !form.checkValidity();
+
+    }
+
+
+    // Check the form whenever the user types
+    form.addEventListener("input", checkForm);
+
+    // Check the form whenever the user changes an option
+    form.addEventListener("change", checkForm);
+
+    // Check the form when the page first loads
+    checkForm();
+
+}
+
+
+
+
+// Call the functions
+validateform();
 displayOrderSummary(products);
