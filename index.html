@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Document Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your purchase using our simple and secure checkout page.">
+    <title>Checkout | Northstar Supply</title>
+
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Website Header Section -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#" class="brand-logo" aria-label="Northstar Supply home">
+                NORTHSTAR<span>SUPPLY.</span>
+            </a>
+
+            <div class="header-status">
+                <span class="status-icon" aria-hidden="true">✓</span>
+                Secure Checkout
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Main Checkout Page -->
+    <main class="page-shell">
+
+        <!-- Page Introduction Section -->
+        <section class="page-heading" aria-labelledby="page-title">
+            <div class="heading-text">
+                <p class="eyebrow">ALMOST THERE</p>
+                <h1 id="page-title">Complete your order</h1>
+                <p id="page-description">
+                    Just a few more details and your order will be on its way.
+                </p>
+            </div>
+
+            <div class="checkout-progress">
+                <span class="progress-step completed">1</span>
+                <span class="progress-line"></span>
+                <span class="progress-step active">2</span>
+                <span class="progress-label">Checkout</span>
+            </div>
+        </section>
+
+
+        <!-- Checkout Layout: Customer Form and Order Summary -->
+        <div class="checkout-layout" id="checkout-layout">
+
+            <!-- Customer Information and Checkout Form -->
+            <form id="checkout-form" class="checkout-form" novalidate>
+
+                <!-- Customer Information Section -->
+                <section class="panel" aria-labelledby="customer-heading">
+
+                    <div class="section-heading">
+                        <span class="step-number">01</span>
+
+                        <div>
+                            <h2 id="customer-heading">Customer information</h2>
+                            <p>Enter your contact and delivery details.</p>
+                        </div>
+                    </div>
+
+                    <!-- Customer Form Fields -->
+                    <div class="form-grid">
+
+                        <div class="form-field">
+                            <label for="full-name">Full name</label>
+                            <input
+                                type="text"
+                                id="full-name"
+                                name="fullName"
+                                placeholder="John Smith"
+                                autocomplete="name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="email">Email address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="john@example.com"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="phone">Phone number</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="+961 70 123 456"
+                                autocomplete="tel"
+                                required
+                            >
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <!-- Delivery Address Section -->
+                <section class="panel" aria-labelledby="address-heading">
+
+                    <div class="section-heading">
+                        <span class="step-number">02</span>
+
+                        <div>
+                            <h2 id="address-heading">Delivery address</h2>
+                            <p>Where should we deliver your order?</p>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Address Form Fields -->
+                    <div class="form-grid">
+
+                        <div class="form-field full-width">
+                            <label for="address">Street address</label>
+                            <input
+                                type="text"
+                                id="address"
+                                name="address"
+                                placeholder="Street name, building, apartment..."
+                                autocomplete="street-address"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="city">City</label>
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                placeholder="Beirut"
+                                autocomplete="address-level2"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="postal-code">
+                                Postal code <span class="optional">(Optional)</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="postal-code"
+                                name="postalCode"
+                                placeholder="Postal code"
+                                autocomplete="postal-code"
+                            >
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <!-- Delivery Method Selection Section -->
+                <section class="panel" aria-labelledby="delivery-heading">
+
+                    <div class="section-heading">
+                        <span class="step-number">03</span>
+
+                        <div>
+                            <h2 id="delivery-heading">Delivery method</h2>
+                            <p>Choose how quickly you want your order.</p>
+                        </div>
+                    </div>
+
+                    <!-- Available Delivery Options -->
+                    <fieldset class="option-group">
+                        <legend class="visually-hidden">Choose a delivery method</legend>
+
+                        <label class="option-card">
+                            <input
+                                type="radio"
+                                name="delivery"
+                                value="5"
+                                data-label="Standard delivery"
+                                checked
+                            >
+
+                            <span class="option-content">
+                                <span class="option-main">
+                                    <span class="option-title">Standard delivery</span>
+                                    <span class="option-description">Delivery within 3–5 business days</span>
+                                </span>
+
+                                <span class="option-price">$5.00</span>
+                            </span>
+                        </label>
+
+                        <label class="option-card">
+                            <input
+                                type="radio"
+                                name="delivery"
+                                value="10"
+                                data-label="Express delivery"
+                            >
+
+                            <span class="option-content">
+                                <span class="option-main">
+                                    <span class="option-title">Express delivery</span>
+                                    <span class="option-description">Delivery within 1–2 business days</span>
+                                </span>
+
+                                <span class="option-price">$10.00</span>
+                            </span>
+                        </label>
+
+                    </fieldset>
+                </section>
+
+
+                <!-- Payment Method Selection Section -->
+                <section class="panel" aria-labelledby="payment-heading">
+
+                    <div class="section-heading">
+                        <span class="step-number">04</span>
+
+                        <div>
+                            <h2 id="payment-heading">Payment method</h2>
+                            <p>Select your preferred payment option.</p>
+                        </div>
+                    </div>
+
+                    <!-- Available Payment Options -->
+                    <fieldset class="option-group">
+                        <legend class="visually-hidden">Choose a payment method</legend>
+
+                        <label class="option-card">
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="cash"
+                                checked
+                            >
+
+                            <span class="option-content">
+                                <span class="option-main">
+                                    <span class="option-title">Cash on delivery</span>
+                                    <span class="option-description">Pay when your order arrives.</span>
+                                </span>
+
+                                <span class="payment-icon" aria-hidden="true">$</span>
+                            </span>
+                        </label>
+
+                        <label class="option-card">
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="card"
+                            >
+
+                            <span class="option-content">
+                                <span class="option-main">
+                                    <span class="option-title">Credit / debit card</span>
+                                    <span class="option-description">Enter dummy card information for this demo.</span>
+                                </span>
+
+                                <span class="payment-icon" aria-hidden="true">▣</span>
+                            </span>
+                        </label>
+
+                    </fieldset>
+
+
+                    <!-- Card Information: Displayed Only When Card Payment Is Selected -->
+                    <div id="card-fields" class="card-fields" hidden>
+
+                        <div class="card-notice">
+                            Demo payment only. Do not enter real card information.
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-field full-width">
+                                <label for="card-name">Cardholder name</label>
+                                <input
+                                    type="text"
+                                    id="card-name"
+                                    name="cardName"
+                                    placeholder="Name on card"
+                                    autocomplete="cc-name"
+                                >
+                            </div>
+
+                            <div class="form-field full-width">
+                                <label for="card-number">Card number</label>
+                                <input
+                                    type="text"
+                                    id="card-number"
+                                    name="cardNumber"
+                                    placeholder="1234 5678 9012 3456"
+                                    inputmode="numeric"
+                                    autocomplete="cc-number"
+                                    maxlength="23"
+                                    pattern="[0-9 ]{13,23}"
+                                    title="Enter a valid dummy card number using 13 to 19 digits."
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="card-expiry">Expiry date</label>
+                                <input
+                                    type="text"
+                                    id="card-expiry"
+                                    name="cardExpiry"
+                                    placeholder="MM/YY"
+                                    autocomplete="cc-exp"
+                                    maxlength="5"
+                                    pattern="(0[1-9]|1[0-2])/[0-9]{2}"
+                                    title="Enter the expiry date in MM/YY format."
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="card-cvv">Security code</label>
+                                <input
+                                    type="password"
+                                    id="card-cvv"
+                                    name="cardCvv"
+                                    placeholder="123"
+                                    inputmode="numeric"
+                                    autocomplete="cc-csc"
+                                    maxlength="4"
+                                    pattern="[0-9]{3,4}"
+                                    title="Enter a 3 or 4 digit security code."
+                                >
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </form>
+
+
+            <!-- Order Summary Panel -->
+            <aside class="order-card" aria-labelledby="order-heading">
+
+                <!-- Order Summary Heading -->
+                <div class="order-card-heading">
+                    <div>
+                        <p class="eyebrow">YOUR PURCHASE</p>
+                        <h2 id="order-heading">Order summary</h2>
+                    </div>
+
+                    <span id="item-count" class="item-count">0 items</span>
+                </div>
+
+
+                <!-- Products: Generated Dynamically With JavaScript -->
+                <ul id="product-list" class="product-list" aria-label="Products in your order">
+                </ul>
+
+
+                <!-- Promotional Code Section -->
+                <section class="promo-section" aria-labelledby="promo-heading">
+
+                    <h3 id="promo-heading">Have a promo code?</h3>
+
+                    <div class="promo-controls">
+                        <label for="promo-code" class="visually-hidden">Promo code</label>
+
+                        <input
+                            type="text"
+                            id="promo-code"
+                            placeholder="Enter code"
+                            autocomplete="off"
+                        >
+
+                        <button type="button" id="promo-button" class="promo-button">
+                            Apply
+                        </button>
+                    </div>
+
+                    <p id="promo-message" class="promo-message" aria-live="polite"></p>
+
+                </section>
+
+
+                <!-- Order Price Breakdown Section -->
+                <section class="price-section" aria-label="Order price breakdown">
+
+                    <div class="price-row">
+                        <span>Subtotal</span>
+                        <strong id="subtotal">$0.00</strong>
+                    </div>
+
+                    <div class="price-row">
+                        <span id="delivery-label">Standard delivery</span>
+                        <strong id="delivery-fee">$5.00</strong>
+                    </div>
+
+                    <div id="discount-row" class="price-row discount-row" hidden>
+                        <span>Discount (10%)</span>
+                        <strong id="discount-amount">-$0.00</strong>
+                    </div>
+
+                    <div class="price-row total-row">
+                        <span>Total</span>
+                        <strong id="final-total">$0.00</strong>
+                    </div>
+
+                </section>
+
+
+                <!-- Place Order and Form Feedback Section -->
+                <div class="order-actions">
+
+                    <button
+                        type="submit"
+                        form="checkout-form"
+                        class="place-order-button"
+                    >
+                        Place order
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                    <p id="form-message" class="form-message" aria-live="polite"></p>
+
+                    <div class="secure-message">
+                        <span aria-hidden="true">✓</span>
+                        Your information is used for this checkout demo only.
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <!-- Order Confirmation Section: Hidden Until Successful Checkout -->
+        <section id="confirmation-section" class="confirmation-section" hidden>
+
+            <!-- Confirmation Success Message -->
+            <div class="confirmation-header">
+                <div class="success-icon" aria-hidden="true">✓</div>
+
+                <p class="eyebrow">ORDER COMPLETED</p>
+
+                <h2>Your order is confirmed!</h2>
+
+                <p>
+                    Thank you for shopping with Northstar Supply.
+                    Your order details are shown below.
+                </p>
+            </div>
+
+
+            <!-- Generated Order Number -->
+            <div class="order-number-card">
+                <span>ORDER NUMBER</span>
+                <strong id="confirmation-number">NS-000000</strong>
+            </div>
+
+
+            <!-- Customer and Delivery Confirmation Details -->
+            <div class="confirmation-grid">
+
+                <div class="confirmation-detail">
+                    <span class="detail-label">CUSTOMER</span>
+                    <strong id="confirmation-name"></strong>
+                    <p id="confirmation-contact"></p>
+                </div>
+
+                <div class="confirmation-detail">
+                    <span class="detail-label">DELIVERY ADDRESS</span>
+                    <strong id="confirmation-address"></strong>
+                </div>
+
+                <div class="confirmation-detail">
+                    <span class="detail-label">DELIVERY METHOD</span>
+                    <strong id="confirmation-delivery"></strong>
+                </div>
+
+                <div class="confirmation-detail">
+                    <span class="detail-label">PAYMENT METHOD</span>
+                    <strong id="confirmation-payment"></strong>
+                </div>
+
+            </div>
+
+
+            <!-- Completed Order Items -->
+            <div class="confirmation-order">
+                <h3>Order details</h3>
+
+                <ul id="confirmation-items" class="confirmation-items">
+                </ul>
+            </div>
+
+
+            <!-- Final Payment Breakdown -->
+            <div class="confirmation-prices">
+
+                <div class="price-row">
+                    <span>Subtotal</span>
+                    <strong id="confirmation-subtotal"></strong>
+                </div>
+
+                <div class="price-row">
+                    <span>Delivery fee</span>
+                    <strong id="confirmation-delivery-fee"></strong>
+                </div>
+
+                <div id="confirmation-discount-row" class="price-row discount-row" hidden>
+                    <span>Discount</span>
+                    <strong id="confirmation-discount"></strong>
+                </div>
+
+                <div class="price-row total-row">
+                    <span>Final total</span>
+                    <strong id="confirmation-total"></strong>
+                </div>
+
+            </div>
+
+
+            <!-- Start New Checkout Button -->
+            <button type="button" id="new-order-button" class="place-order-button new-order-button">
+                Back to checkout
+                <span aria-hidden="true">→</span>
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Website Footer -->
+    <footer class="site-footer">
+        <p>© 2026 Northstar Supply. All rights reserved.</p>
+        <p>Checkout demonstration · No real payments are processed.</p>
+    </footer>
+
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+
+</body>
+</html>
