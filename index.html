@@ -10,6 +10,7 @@
 
     <!-- External CSS File -->
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -186,6 +187,7 @@
 
                         <label class="option-card">
                             <input
+                            id="standard-delivery"
                                 type="radio"
                                 name="delivery"
                                 value="5"
@@ -205,6 +207,7 @@
 
                         <label class="option-card">
                             <input
+                            id="express-delivery"
                                 type="radio"
                                 name="delivery"
                                 value="10"
@@ -405,7 +408,7 @@
 
                     <div class="price-row">
                         <span id="delivery-label">Standard delivery</span>
-                        <strong id="delivery-fee">$5.00</strong>
+                        <strong id="delivery-fee">$0.00</strong>
                     </div>
 
                     <div id="discount-row" class="price-row discount-row" hidden>
@@ -552,8 +555,6 @@
     </footer>
 
 
-    <!-- JavaScript File -->
-    <script src="script.js"></script>
 
 </body>
 </html>
