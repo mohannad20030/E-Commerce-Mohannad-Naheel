@@ -202,14 +202,20 @@ function displayOrderSummary(products) {
     // Section 4: Take user info to the Confirmation Section
     // ==============================
 
+function displayUserInfo() {
+
 const fullNameInput = document.getElementById("full-name");
 const phoneInput = document.getElementById("phone");
 const fulladdressInput = document.getElementById("address");
 const paymentMethodSelect = document.getElementById("confirmation-payment");
 
+const confirmationName = document.getElementById("confirmation-name");
 
+// Get the value entered by the user.
+confirmationName.textContent = fullNameInput.value;
 
-
+console.log("Full Name: " + confirmationName.textContent);
+}
 
 
 
@@ -254,6 +260,7 @@ const paymentMethodSelect = document.getElementById("confirmation-payment");
     updateFinalTotal();
     // Display the confirmation summary.
     displayConfirmationSummary();
+    displayUserInfo()
 
 
 }
