@@ -198,6 +198,36 @@ function displayOrderSummary(products) {
 
     }
 
+    // ==============================
+    // Section 4: Take user info to the Confirmation Section
+    // ==============================
+
+const fullNameInput = document.getElementById("full-name");
+const phoneInput = document.getElementById("phone");
+const fulladdressInput = document.getElementById("address");
+const paymentMethodSelect = document.getElementById("confirmation-payment");
+
+
+
+
+
+
+
+
+    // ==============================
+    // Section 5: Display Confirmation Summary
+    // ==============================
+
+
+    function displayConfirmationSummary() {
+        const confirmationSubtotal = document.getElementById("confirmation-subtotal");
+        const confirmationDelivery = document.getElementById("confirmation-delivery-fee");
+        const confirmationTotal = document.getElementById("confirmation-total");
+        confirmationSubtotal.textContent = "$" + tSubtotal.toFixed(2);
+        confirmationDelivery.textContent = "$" + deliveryFee.toFixed(2);
+        confirmationTotal.textContent = finalTotal.textContent;
+    }
+
 
     // ==============================
     // Call the Helper Functions
@@ -222,13 +252,16 @@ function displayOrderSummary(products) {
 
     // Display the delivery fee and final total.
     updateFinalTotal();
+    // Display the confirmation summary.
+    displayConfirmationSummary();
+
 
 }
 
 
 
 // ==============================
-// Section 4: Validate Form
+// Section 6: Validate Form
 // ==============================
 
 // Create a function called validateform
@@ -338,7 +371,7 @@ function showConfirmation() {
 
 }
 // ==============================
-// Section 5: Call the Functions
+// Section 7: Call the Functions
 // ==============================
 showConfirmation();
 validateform();
