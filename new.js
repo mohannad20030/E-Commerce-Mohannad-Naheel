@@ -151,9 +151,12 @@ function displayOrderSummary(products) {
 
     function setupPromoCode() {
 
+        const discountRow = document.getElementById("discount-row");
+        const disamount = document.getElementById("discount-amount");
         let promoCodeUsed = false;
         // APPLY PROMOTION CODE
         promobutton.addEventListener("click", function () {
+
 
             const promoInput = document.getElementById("promo-code");
             const promtrim = promoInput.value.trim().toUpperCase();
@@ -169,19 +172,24 @@ function displayOrderSummary(products) {
                 // Update the final total.
                 updateFinalTotal();
 
-                const discountRow = document.getElementById("discount-row");
-                discountRow.hidden = false;
 
+                discountRow.hidden = false;
+                disamount.hidden = true;
                 const discountAmount = document.getElementById("discount-amount");
                 discountAmount.textContent = "-$" + (totalbeforeDiscount - tSubtotal).toFixed(2);
-
+                disamount.hidden = false;
                 promoInput.value = ""; // Clear the input field
 
             }
 
             else {
 
-                alert("Your promo code is invalid or expired. Please try again.");
+                disamount.hidden = true;
+                discountRow.hidden = false;
+                const invalidPromo = document.getElementById("discount-label");
+                invalidPromo.style.color = "red";
+                invalidPromo.style.fontWeight = "bold";
+                invalidPromo.textContent = "Invalid promo code. Please try again.";
                 promoInput.value = ""; // Clear the input field
 
             }
@@ -237,10 +245,10 @@ function validateform() {
 
 
     // Check each required input
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
 
         // Listen for when the user leaves an input
-        input.addEventListener("blur", function() {
+        input.addEventListener("blur", function () {
 
             // Check if the input is empty or invalid
             if (!input.checkValidity()) {
@@ -277,9 +285,61 @@ function validateform() {
 
 
 
+function showConfirmation() {
+
+    // Get the Place Order button.
+    const confbutton = document.getElementById("place-order-button");
+    const gobackbutton = document.getElementById("new-order-button");
+
+    // Get the confirmation section.
+    const orderconfirm = document.getElementById("confirmation-section");
+
+    // Get the checkout form and page heading to hide them.
+    const checkoutform = document.getElementById("checkout-layout");
+    const pageheading = document.getElementById("page-heading");
+
+
+
+    // Listen for when the user clicks the button.
+    confbutton.addEventListener("click", function (event) {
+
+        // Prevent the page from refreshing.
+        event.preventDefault();
+        // Display the confirmation section.
+        orderconfirm.hidden = false;
+        checkoutform.hidden = true;
+        pageheading.hidden = true;
+        // Generates a random integer from 1 to 10000
+        const ordenum = document.getElementById("confirmation-number");
+        const randomNumber = Math.floor(Math.random() * 100000) + 1;
+        ordenum.textContent = "NS-" + randomNumber;
+        window.scrollTo(0, 0);
+
+
+    });
+    gobackbutton.addEventListener("click", function (event) {
+
+
+        // Select all inputs inside the checkout form.
+        const inputs = checkoutform.querySelectorAll("input, select, textarea");
+
+        // Disable all inputs.
+        inputs.forEach(function (input) {
+            input.disabled = true;
+        });
+        confbutton.disabled = true;
+        orderconfirm.hidden = false;
+        checkoutform.hidden = false;
+        pageheading.hidden = false;
+        window.scrollTo(0, 0);
+
+    });
+
+
+}
 // ==============================
 // Section 5: Call the Functions
 // ==============================
-
+showConfirmation();
 validateform();
 displayOrderSummary(products);
