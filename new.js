@@ -15,6 +15,7 @@ function displayOrderSummary(products) {
 
     // Find the product list using its ID.
     const productList = document.getElementById("product-list");
+    const confirmationProductList = document.getElementById("confirmation-items");
 
     // Find the item count using its ID.
     const itemCount = document.getElementById("item-count");
@@ -28,6 +29,7 @@ function displayOrderSummary(products) {
 
     // Clear the previous products.
     productList.innerHTML = "";
+    confirmationProductList.innerHTML = "";
 
 
     // Create a variable to count all the products.
@@ -96,6 +98,7 @@ function displayOrderSummary(products) {
 
         // Add the li inside productList.
         productList.appendChild(li);
+        confirmationProductList.appendChild(li.cloneNode(true));
 
     }
 
@@ -164,9 +167,8 @@ function displayOrderSummary(products) {
 
             if (promtrim === "SAVE10" && !promoCodeUsed) {
 
-                const totalbeforeDiscount = tSubtotal;
 
-                tSubtotal = tSubtotal - (tSubtotal * 0.1); // Apply 10% discount
+                let discountedTotal = tSubtotal - (tSubtotal * 0.1); // Apply 10% discount
                 promoCodeUsed = true;
 
                 // Update the final total.
@@ -175,10 +177,26 @@ function displayOrderSummary(products) {
 
                 discountRow.hidden = false;
                 disamount.hidden = true;
+
                 const discountAmount = document.getElementById("discount-amount");
-                discountAmount.textContent = "-$" + (totalbeforeDiscount - tSubtotal).toFixed(2);
+                discountAmount.textContent = "-$" + (tSubtotal - discountedTotal).toFixed(2);
                 disamount.hidden = false;
+
+ 
                 promoInput.value = ""; // Clear the input field
+                finalTotal.textContent = "$" + (discountedTotal + deliveryFee).toFixed(2);
+                 // finalTotal.textContent = "$" + (finalTotal - discountedTotal).toFixed(2);
+
+                const confirmationDiscount = document.getElementById("confirmation-discount-row");
+                confirmationDiscount.hidden = false;
+
+
+                const confirmationDiscountAmount = document.getElementById("confirmation-discount");
+                confirmationDiscountAmount.textContent = discountAmount.textContent
+                
+                 const confirmationTotal = document.getElementById("confirmation-total");
+                 confirmationTotal.textContent = discountedTotal.toFixed(2);
+                 
 
             }
 
@@ -195,6 +213,7 @@ function displayOrderSummary(products) {
             }
 
         });
+
 
     }
 
@@ -214,6 +233,7 @@ function displayOrderSummary(products) {
         const confirmationTotal = document.getElementById("confirmation-total");
         confirmationSubtotal.textContent = "$" + tSubtotal.toFixed(2);
         confirmationDelivery.textContent = "$" + deliveryFee.toFixed(2);
+       // const confirmationDiscount = document.getElementById("confirmation-discount");
         confirmationTotal.textContent = finalTotal.textContent;
     }
 
