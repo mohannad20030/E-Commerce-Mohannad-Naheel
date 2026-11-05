@@ -26,6 +26,7 @@ function displayOrderSummary(products) {
 
     // Find the product list using its ID.
     const productList = document.getElementById("product-list");
+    const confirmationProductList = document.getElementById("confirmation-items");
 
     // Find the item count using its ID.
     const itemCount = document.getElementById("item-count");
@@ -107,6 +108,7 @@ function displayOrderSummary(products) {
 
         // Add the li inside productList.
         productList.appendChild(li);
+        confirmationProductList.appendChild(li.cloneNode(true));
 
     }
 
@@ -139,6 +141,8 @@ function displayOrderSummary(products) {
 
             // Update the displayed delivery fee and final total.
             updateFinalTotal();
+            // Update the confirmation summary.
+            displayConfirmationSummary();
 
         });
 
@@ -150,9 +154,25 @@ function displayOrderSummary(products) {
 
             // Update the displayed delivery fee and final total.
             updateFinalTotal();
+            // Update the confirmation summary.
+            displayConfirmationSummary();
 
         });
 
+    }
+
+    // ==============================
+    // Section 5: Display Confirmation Summary
+    // ==============================
+
+
+    function displayConfirmationSummary() {
+        const confirmationSubtotal = document.getElementById("confirmation-subtotal");
+        const confirmationDelivery = document.getElementById("confirmation-delivery-fee");
+        const confirmationTotal = document.getElementById("confirmation-total");
+        confirmationSubtotal.textContent = "$" + tSubtotal.toFixed(2);
+        confirmationDelivery.textContent = "$" + deliveryFee.toFixed(2);
+        confirmationTotal.textContent = finalTotal.textContent;
     }
 
 
@@ -191,6 +211,16 @@ function displayOrderSummary(products) {
                 disamount.hidden = false;
                 promoInput.value = ""; // Clear the input field
 
+                // Display the discount in confirmation.
+                const confirmdiscountrow = document.getElementById("confirmation-discount-row");
+                confirmdiscountrow.hidden = false;
+                const confirmdiscountamount = document.getElementById("confirmation-discount");
+                confirmdiscountamount.textContent = discountAmount.textContent;
+                // Update the confirmation subtotal and total.
+                const confirmationSubtotal = document.getElementById("confirmation-subtotal");
+                confirmationSubtotal.textContent = "$" + tSubtotal.toFixed(2);
+                const confirmationTotal = document.getElementById("confirmation-total");
+                confirmationTotal.textContent = "$" + (tSubtotal + deliveryFee).toFixed(2);
             }
 
             else {
@@ -210,23 +240,6 @@ function displayOrderSummary(products) {
     }
 
 
-
-
-
-
-    // ==============================
-    // Section 5: Display Confirmation Summary
-    // ==============================
-
-
-    function displayConfirmationSummary() {
-        const confirmationSubtotal = document.getElementById("confirmation-subtotal");
-        const confirmationDelivery = document.getElementById("confirmation-delivery-fee");
-        const confirmationTotal = document.getElementById("confirmation-total");
-        confirmationSubtotal.textContent = "$" + tSubtotal.toFixed(2);
-        confirmationDelivery.textContent = "$" + deliveryFee.toFixed(2);
-        confirmationTotal.textContent = finalTotal.textContent;
-    }
 
 
     // ==============================
@@ -268,24 +281,6 @@ function displayOrderSummary(products) {
 
 function setupPaymentMethods() {
 
-    // // Get the payment method elements
-    // const cashPayment = document.getElementById("cash-payment");
-    // const cardPayment = document.getElementById("card-payment");
-
-    // // Get the card information fields
-    // const cardDetails = document.getElementById("card-details");
-    // const cardName = document.getElementById("card-name");
-    // const cardNumber = document.getElementById("card-number");
-    // const cardExpiry = document.getElementById("card-expiry");
-    // const cardCvv = document.getElementById("card-cvv");
-
-    // // Store all card inputs in an array
-    // const cardInputs = [
-    //     cardName,
-    //     cardNumber,
-    //     cardExpiry,
-    //     cardCvv
-    // ];
 
     // ==============================
     // Function 5.1: Validate Card Name
@@ -320,7 +315,22 @@ function setupPaymentMethods() {
             cardNumber.setCustomValidity("");
         }
     }
+    function formatCardExpiry() {
 
+        let expiry = cardExpiry.value.replace(/\D/g, "");
+
+        // Limit to 4 digits
+        expiry = expiry.substring(0, 4);
+
+        // Automatically add /
+        if (expiry.length > 2) {
+            expiry = expiry.substring(0, 2) + "/" + expiry.substring(2);
+        }
+
+        cardExpiry.value = expiry;
+    }
+    cardExpiry.addEventListener("input", formatCardExpiry);
+    cardExpiry.addEventListener("input", validateCardExpiry);
     // ==============================
     // Function 5.3: Validate Expiry Date
     // ==============================
@@ -386,7 +396,7 @@ function setupPaymentMethods() {
             cardDetails.hidden = false;
 
             // Make card fields required
-            cardInputs.forEach(function(input) {
+            cardInputs.forEach(function (input) {
                 input.required = true;
             });
 
@@ -396,7 +406,7 @@ function setupPaymentMethods() {
             cardDetails.hidden = true;
 
             // Remove required validation
-            cardInputs.forEach(function(input) {
+            cardInputs.forEach(function (input) {
                 input.required = false;
                 input.setCustomValidity("");
             });
@@ -418,9 +428,9 @@ function setupPaymentMethods() {
     cardPayment.addEventListener("change", updatePaymentFields);
 
     // Show validation message when the user leaves a card field
-    cardInputs.forEach(function(input) {
+    cardInputs.forEach(function (input) {
 
-        input.addEventListener("blur", function() {
+        input.addEventListener("blur", function () {
 
             if (input.required && !input.checkValidity()) {
                 input.reportValidity();
@@ -503,7 +513,9 @@ function displayUserInfo() {
     const fullNameInput = document.getElementById("full-name").value;
     const phoneInput = document.getElementById("phone");
     const fulladdressInput = document.getElementById("address");
-    const paymentMethodSelect = document.getElementById("confirmation-payment");
+    const paymentMethodSelect = document.querySelector(
+        'input[name="payment"]:checked'
+    );
 
     const confirmationName = document.getElementById("confirmation-name");
     const confirmationPhone = document.getElementById("confirmation-phone");

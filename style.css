@@ -740,6 +740,8 @@ a {
     background-color: var(--white);
     border: 1px solid var(--border-color);
     border-radius: 12px;
+    padding-bottom: 211px;
+
 }
 
 /* Confirmation Header */
@@ -885,12 +887,13 @@ a {
     margin-left: auto;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
+        margin-top: -402px;
+
 }
 
 .new-order-button {
     max-width: 300px;
-    margin: 30px auto 0;
-}
+margin: 52px 55%;}
 
 
 /* ==============================
