@@ -324,6 +324,23 @@ function setupPaymentMethods() {
     // ==============================
     // Function 5.3: Validate Expiry Date
     // ==============================
+function formatCardExpiry() {
+
+    let expiry = cardExpiry.value.replace(/\D/g, "");
+
+    // Limit to 4 digits
+    expiry = expiry.substring(0, 4);
+
+    // Automatically add /
+    if (expiry.length > 2) {
+        expiry = expiry.substring(0, 2) + "/" + expiry.substring(2);
+    }
+
+    cardExpiry.value = expiry;
+}
+cardExpiry.addEventListener("input", formatCardExpiry);
+cardExpiry.addEventListener("input", validateCardExpiry);
+
 
     function validateCardExpiry() {
 
@@ -503,12 +520,15 @@ function displayUserInfo() {
     const fullNameInput = document.getElementById("full-name").value;
     const phoneInput = document.getElementById("phone");
     const fulladdressInput = document.getElementById("address");
-    const paymentMethodSelect = document.getElementById("confirmation-payment");
-
+    //const paymentMethodSelect = document.getElementById("confirmation-payment");
+    const paymentMethodSelect = document.querySelector(
+    'input[name="payment"]:checked'
+);
     const confirmationName = document.getElementById("confirmation-name");
     const confirmationPhone = document.getElementById("confirmation-phone");
     const confirmationAddress = document.getElementById("confirmation-address");
     const confirmationPayment = document.getElementById("confirmation-payment");
+    
 
     // Display the user's name.
     confirmationName.textContent = fullNameInput;
