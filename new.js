@@ -198,24 +198,7 @@ function displayOrderSummary(products) {
 
     }
 
-    // ==============================
-    // Section 4: Take user info to the Confirmation Section
-    // ==============================
 
-function displayUserInfo() {
-
-const fullNameInput = document.getElementById("full-name");
-const phoneInput = document.getElementById("phone");
-const fulladdressInput = document.getElementById("address");
-const paymentMethodSelect = document.getElementById("confirmation-payment");
-
-const confirmationName = document.getElementById("confirmation-name");
-
-// Get the value entered by the user.
-confirmationName.textContent = fullNameInput.value;
-
-console.log("Full Name: " + confirmationName.textContent);
-}
 
 
 
@@ -260,11 +243,10 @@ console.log("Full Name: " + confirmationName.textContent);
     updateFinalTotal();
     // Display the confirmation summary.
     displayConfirmationSummary();
-    displayUserInfo()
+
 
 
 }
-
 
 
 // ==============================
@@ -324,6 +306,31 @@ function validateform() {
 }
 
 
+// ==============================
+// Section 4: Take user info to the Confirmation Section
+// ==============================
+
+function displayUserInfo() {
+
+    const fullNameInput = document.getElementById("full-name").value;
+    const phoneInput = document.getElementById("phone");
+    const fulladdressInput = document.getElementById("address");
+    const paymentMethodSelect = document.getElementById("confirmation-payment");
+
+    const confirmationName = document.getElementById("confirmation-name");
+    const confirmationPhone = document.getElementById("confirmation-phone");
+    const confirmationAddress = document.getElementById("confirmation-address");
+    const confirmationPayment = document.getElementById("confirmation-payment");
+
+    // Display the user's name.
+    confirmationName.textContent = fullNameInput;
+    // Display the user's phone number.
+    confirmationPhone.textContent = phoneInput.value;
+    // Display the user's address.
+    confirmationAddress.textContent = fulladdressInput.value;
+    // Display the user's payment method.
+    confirmationPayment.textContent = paymentMethodSelect.value;
+}
 
 function showConfirmation() {
 
@@ -345,6 +352,8 @@ function showConfirmation() {
 
         // Prevent the page from refreshing.
         event.preventDefault();
+
+        displayUserInfo();
         // Display the confirmation section.
         orderconfirm.hidden = false;
         checkoutform.hidden = true;
