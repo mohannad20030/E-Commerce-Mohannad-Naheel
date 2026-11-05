@@ -7,6 +7,17 @@ const products = [
 ];
 
 
+const cashPayment = document.getElementById("cash-payment");
+const cardPayment = document.getElementById("card-payment");
+const cardDetails = document.getElementById("card-fields");
+const cardName = document.getElementById("card-name");
+const cardNumber = document.getElementById("card-number");
+const cardExpiry = document.getElementById("card-expiry");
+const cardCvv = document.getElementById("card-cvv");
+
+// Store all card inputs in an array
+const cardInputs = [cardName, cardNumber, cardExpiry, cardCvv];
+
 // ==============================
 // Section 1: Display Products
 // ==============================
@@ -248,7 +259,184 @@ function displayOrderSummary(products) {
 
 }
 
+////////////////////////////////////////////////////////////////////////////////
 
+
+// ==============================
+// Section 5: Payment Methods
+// ==============================
+
+function setupPaymentMethods() {
+
+    // // Get the payment method elements
+    // const cashPayment = document.getElementById("cash-payment");
+    // const cardPayment = document.getElementById("card-payment");
+
+    // // Get the card information fields
+    // const cardDetails = document.getElementById("card-details");
+    // const cardName = document.getElementById("card-name");
+    // const cardNumber = document.getElementById("card-number");
+    // const cardExpiry = document.getElementById("card-expiry");
+    // const cardCvv = document.getElementById("card-cvv");
+
+    // // Store all card inputs in an array
+    // const cardInputs = [
+    //     cardName,
+    //     cardNumber,
+    //     cardExpiry,
+    //     cardCvv
+    // ];
+
+    // ==============================
+    // Function 5.1: Validate Card Name
+    // ==============================
+
+    function validateCardName() {
+
+        const name = cardName.value.trim();
+
+        if (name.length < 3) {
+            cardName.setCustomValidity(
+                "Please enter a cardholder name with at least 3 characters."
+            );
+        } else {
+            cardName.setCustomValidity("");
+        }
+    }
+
+    // ==============================
+    // Function 5.2: Validate Card Number
+    // ==============================
+
+    function validateCardNumber() {
+
+        const number = cardNumber.value.replace(/\s/g, "");
+
+        if (!/^[0-9]{13,19}$/.test(number)) {
+            cardNumber.setCustomValidity(
+                "Card number must contain 13 to 19 digits."
+            );
+        } else {
+            cardNumber.setCustomValidity("");
+        }
+    }
+
+    // ==============================
+    // Function 5.3: Validate Expiry Date
+    // ==============================
+
+    function validateCardExpiry() {
+
+        const expiry = cardExpiry.value.trim();
+
+        // Check MM/YY format
+        if (!/^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(expiry)) {
+
+            cardExpiry.setCustomValidity(
+                "Enter a valid expiry date in MM/YY format."
+            );
+            return;
+        }
+
+        // Separate month and year
+        const parts = expiry.split("/");
+        const month = parseInt(parts[0]);
+        const year = 2000 + parseInt(parts[1]);
+
+        // Get the current date
+        const today = new Date();
+        const currentMonth = today.getMonth() + 1;
+        const currentYear = today.getFullYear();
+
+        // Check if the card has expired
+        if (
+            year < currentYear ||
+            (year === currentYear && month < currentMonth)
+        ) {
+            cardExpiry.setCustomValidity("This card has expired.");
+        } else {
+            cardExpiry.setCustomValidity("");
+        }
+    }
+
+    // ==============================
+    // Function 5.4: Validate CVV
+    // ==============================
+
+    function validateCardCvv() {
+
+        if (!/^[0-9]{3,4}$/.test(cardCvv.value)) {
+            cardCvv.setCustomValidity(
+                "Security code must contain 3 or 4 digits."
+            );
+        } else {
+            cardCvv.setCustomValidity("");
+        }
+    }
+
+    // ==============================
+    // Function 5.5: Update Card Fields
+    // ==============================
+
+    function updatePaymentFields() {
+
+        if (cardPayment.checked) {
+
+            // Show card information
+            cardDetails.hidden = false;
+
+            // Make card fields required
+            cardInputs.forEach(function(input) {
+                input.required = true;
+            });
+
+        } else {
+
+            // Hide card information
+            cardDetails.hidden = true;
+
+            // Remove required validation
+            cardInputs.forEach(function(input) {
+                input.required = false;
+                input.setCustomValidity("");
+            });
+        }
+    }
+
+    // ==============================
+    // Section 5.6: Add Event Listeners
+    // ==============================
+
+    // Validate each field when the user types
+    cardName.addEventListener("input", validateCardName);
+    cardNumber.addEventListener("input", validateCardNumber);
+    cardExpiry.addEventListener("input", validateCardExpiry);
+    cardCvv.addEventListener("input", validateCardCvv);
+
+    // Show or hide card fields when payment changes
+    cashPayment.addEventListener("change", updatePaymentFields);
+    cardPayment.addEventListener("change", updatePaymentFields);
+
+    // Show validation message when the user leaves a card field
+    cardInputs.forEach(function(input) {
+
+        input.addEventListener("blur", function() {
+
+            if (input.required && !input.checkValidity()) {
+                input.reportValidity();
+            }
+
+        });
+    });
+
+    // Set the initial payment state
+    updatePaymentFields();
+
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 // ==============================
 // Section 6: Validate Form
 // ==============================
@@ -392,3 +580,4 @@ function showConfirmation() {
 showConfirmation();
 validateform();
 displayOrderSummary(products);
+setupPaymentMethods();
