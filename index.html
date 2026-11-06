@@ -10,6 +10,7 @@
 
     <!-- External CSS File -->
     <link rel="stylesheet" href="style.css">
+    <script src="new.js" defer></script>
 </head>
 
 <body>
@@ -33,7 +34,7 @@
     <main class="page-shell">
 
         <!-- Page Introduction Section -->
-        <section class="page-heading" aria-labelledby="page-title">
+        <section class="page-heading" aria-labelledby="page-title" id="page-heading">
             <div class="heading-text">
                 <p class="eyebrow">ALMOST THERE</p>
                 <h1 id="page-title">Complete your order</h1>
@@ -55,7 +56,7 @@
         <div class="checkout-layout" id="checkout-layout">
 
             <!-- Customer Information and Checkout Form -->
-            <form id="checkout-form" class="checkout-form" novalidate>
+            <form id="checkout-form" class="checkout-form">
 
                 <!-- Customer Information Section -->
                 <section class="panel" aria-labelledby="customer-heading">
@@ -73,39 +74,23 @@
                     <div class="form-grid">
 
                         <div class="form-field">
-                            <label for="full-name">Full name</label>
-                            <input
-                                type="text"
-                                id="full-name"
-                                name="fullName"
-                                placeholder="John Smith"
-                                autocomplete="name"
-                                required
-                            >
+                            <label for="full-name">
+                                Full Name <span class="required-star">*</span>
+                            </label>
+                            <input type="text" id="full-name" name="fullName" placeholder="John Smith"
+                                autocomplete="name" required>
                         </div>
 
                         <div class="form-field">
-                            <label for="email">Email address</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="john@example.com"
-                                autocomplete="email"
-                                required
-                            >
+                            <label for="email">Email address <span class="required-star">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com"
+                                autocomplete="email" required>
                         </div>
 
                         <div class="form-field">
-                            <label for="phone">Phone number</label>
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                placeholder="+961 70 123 456"
-                                autocomplete="tel"
-                                required
-                            >
+                            <label for="phone">Phone number <span class="required-star">*</span></label>
+                            <input type="tel" id="phone" name="phone" placeholder="+961 70 123 456" autocomplete="tel"
+                                required>
                         </div>
 
                     </div>
@@ -127,41 +112,26 @@
                     <!-- Delivery Address Form Fields -->
                     <div class="form-grid">
 
+
                         <div class="form-field full-width">
-                            <label for="address">Street address</label>
-                            <input
-                                type="text"
-                                id="address"
-                                name="address"
-                                placeholder="Street name, building, apartment..."
-                                autocomplete="street-address"
-                                required
-                            >
+                            <label for="address">Full address <span class="required-star">*</span></label>
+                            <input type="text" id="address" name="address"
+                                placeholder="Street name, building, apartment..." autocomplete="street-address"
+                                required>
                         </div>
 
                         <div class="form-field">
-                            <label for="city">City</label>
-                            <input
-                                type="text"
-                                id="city"
-                                name="city"
-                                placeholder="Beirut"
-                                autocomplete="address-level2"
-                                required
-                            >
+                            <label for="city">City <span class="required-star">*</span></label>
+                            <input type="text" id="city" name="city" placeholder="Beirut" autocomplete="address-level2"
+                                required>
                         </div>
 
                         <div class="form-field">
                             <label for="postal-code">
-                                Postal code <span class="optional">(Optional)</span>
+                                Postal code <span class="optional">(optional)</span>
                             </label>
-                            <input
-                                type="text"
-                                id="postal-code"
-                                name="postalCode"
-                                placeholder="Postal code"
-                                autocomplete="postal-code"
-                            >
+                            <input type="text" id="postal-code" name="postalCode" placeholder="Postal code"
+                                autocomplete="postal-code">
                         </div>
 
                     </div>
@@ -185,13 +155,8 @@
                         <legend class="visually-hidden">Choose a delivery method</legend>
 
                         <label class="option-card">
-                            <input
-                                type="radio"
-                                name="delivery"
-                                value="5"
-                                data-label="Standard delivery"
-                                checked
-                            >
+                            <input id="standard-delivery" type="radio" name="delivery" value="5"
+                                data-label="Standard delivery" checked>
 
                             <span class="option-content">
                                 <span class="option-main">
@@ -204,12 +169,8 @@
                         </label>
 
                         <label class="option-card">
-                            <input
-                                type="radio"
-                                name="delivery"
-                                value="10"
-                                data-label="Express delivery"
-                            >
+                            <input id="express-delivery" type="radio" name="delivery" value="10"
+                                data-label="Express delivery">
 
                             <span class="option-content">
                                 <span class="option-main">
@@ -242,12 +203,7 @@
                         <legend class="visually-hidden">Choose a payment method</legend>
 
                         <label class="option-card">
-                            <input
-                                type="radio"
-                                name="payment"
-                                value="cash"
-                                checked
-                            >
+                            <input id="cash-payment" type="radio" name="payment" value="Cash on delivery" checked>
 
                             <span class="option-content">
                                 <span class="option-main">
@@ -260,11 +216,7 @@
                         </label>
 
                         <label class="option-card">
-                            <input
-                                type="radio"
-                                name="payment"
-                                value="card"
-                            >
+                            <input id="card-payment" type="radio" name="payment" value="Credit Card">
 
                             <span class="option-content">
                                 <span class="option-main">
@@ -282,65 +234,34 @@
                     <!-- Card Information: Displayed Only When Card Payment Is Selected -->
                     <div id="card-fields" class="card-fields" hidden>
 
-                        <div class="card-notice">
-                            Demo payment only. Do not enter real card information.
-                        </div>
 
                         <div class="form-grid">
 
                             <div class="form-field full-width">
-                                <label for="card-name">Cardholder name</label>
-                                <input
-                                    type="text"
-                                    id="card-name"
-                                    name="cardName"
-                                    placeholder="Name on card"
-                                    autocomplete="cc-name"
-                                >
+                                <label for="card-name">Cardholder name <span class="required-star">*</span></label>
+                                <input type="text" id="card-name" name="cardName" placeholder="Name on card"
+                                    autocomplete="cc-name">
                             </div>
 
                             <div class="form-field full-width">
-                                <label for="card-number">Card number</label>
-                                <input
-                                    type="text"
-                                    id="card-number"
-                                    name="cardNumber"
-                                    placeholder="1234 5678 9012 3456"
-                                    inputmode="numeric"
-                                    autocomplete="cc-number"
-                                    maxlength="23"
-                                    pattern="[0-9 ]{13,23}"
-                                    title="Enter a valid dummy card number using 13 to 19 digits."
-                                >
+                                <label for="card-number">Card number <span class="required-star">*</span></label>
+                                <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456"
+                                    inputmode="numeric" autocomplete="cc-number" maxlength="23" pattern="[0-9 ]{13,23}"
+                                    title="Enter a valid dummy card number using 13 to 19 digits.">
                             </div>
 
                             <div class="form-field">
-                                <label for="card-expiry">Expiry date</label>
-                                <input
-                                    type="text"
-                                    id="card-expiry"
-                                    name="cardExpiry"
-                                    placeholder="MM/YY"
-                                    autocomplete="cc-exp"
-                                    maxlength="5"
-                                    pattern="(0[1-9]|1[0-2])/[0-9]{2}"
-                                    title="Enter the expiry date in MM/YY format."
-                                >
+                                <label for="card-expiry">Expiry date <span class="required-star">*</span></label>
+                                <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY"
+                                    autocomplete="cc-exp" maxlength="5" pattern="(0[1-9]|1[0-2])/[0-9]{2}"
+                                    title="Enter the expiry date in MM/YY format.">
                             </div>
 
                             <div class="form-field">
-                                <label for="card-cvv">Security code</label>
-                                <input
-                                    type="password"
-                                    id="card-cvv"
-                                    name="cardCvv"
-                                    placeholder="123"
-                                    inputmode="numeric"
-                                    autocomplete="cc-csc"
-                                    maxlength="4"
-                                    pattern="[0-9]{3,4}"
-                                    title="Enter a 3 or 4 digit security code."
-                                >
+                                <label for="card-cvv">Security code <span class="required-star">*</span></label>
+                                <input type="password" id="card-cvv" name="cardCvv" placeholder="123"
+                                    inputmode="numeric" autocomplete="cc-csc" maxlength="4" pattern="[0-9]{3,4}"
+                                    title="Enter a 3 or 4 digit security code.">
                             </div>
 
                         </div>
@@ -378,12 +299,7 @@
                     <div class="promo-controls">
                         <label for="promo-code" class="visually-hidden">Promo code</label>
 
-                        <input
-                            type="text"
-                            id="promo-code"
-                            placeholder="Enter code"
-                            autocomplete="off"
-                        >
+                        <input type="text" id="promo-code" placeholder="Enter code" autocomplete="off">
 
                         <button type="button" id="promo-button" class="promo-button">
                             Apply
@@ -405,11 +321,11 @@
 
                     <div class="price-row">
                         <span id="delivery-label">Standard delivery</span>
-                        <strong id="delivery-fee">$5.00</strong>
+                        <strong id="delivery-fee">$0.00</strong>
                     </div>
 
                     <div id="discount-row" class="price-row discount-row" hidden>
-                        <span>Discount (10%)</span>
+                        <span id="discount-label">Discount (10%)</span>
                         <strong id="discount-amount">-$0.00</strong>
                     </div>
 
@@ -424,11 +340,8 @@
                 <!-- Place Order and Form Feedback Section -->
                 <div class="order-actions">
 
-                    <button
-                        type="submit"
-                        form="checkout-form"
-                        class="place-order-button"
-                    >
+                    <button type="submit" form="checkout-form" class="place-order-button" id="place-order-button"
+                        disabled>
                         Place order
                         <span aria-hidden="true">→</span>
                     </button>
@@ -468,7 +381,7 @@
             <!-- Generated Order Number -->
             <div class="order-number-card">
                 <span>ORDER NUMBER</span>
-                <strong id="confirmation-number">NS-000000</strong>
+                <strong id="confirmation-number"></strong>
             </div>
 
 
@@ -478,7 +391,7 @@
                 <div class="confirmation-detail">
                     <span class="detail-label">CUSTOMER</span>
                     <strong id="confirmation-name"></strong>
-                    <p id="confirmation-contact"></p>
+
                 </div>
 
                 <div class="confirmation-detail">
@@ -487,8 +400,8 @@
                 </div>
 
                 <div class="confirmation-detail">
-                    <span class="detail-label">DELIVERY METHOD</span>
-                    <strong id="confirmation-delivery"></strong>
+                    <span class="detail-label">Phone number</span>
+                    <strong id="confirmation-phone"></strong>
                 </div>
 
                 <div class="confirmation-detail">
@@ -527,7 +440,7 @@
                 </div>
 
                 <div class="price-row total-row">
-                    <span>Final total</span>
+                    <span>Total</span>
                     <strong id="confirmation-total"></strong>
                 </div>
 
@@ -552,8 +465,7 @@
     </footer>
 
 
-    <!-- JavaScript File -->
-    <script src="script.js"></script>
 
 </body>
+
 </html>
