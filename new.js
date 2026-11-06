@@ -218,7 +218,7 @@ function displayOrderSummary(products) {
                 confirmdiscountamount.textContent = discountAmount.textContent;
                 // Update the confirmation subtotal and total.
                 const confirmationSubtotal = document.getElementById("confirmation-subtotal");
-                confirmationSubtotal.textContent = "$" + tSubtotal.toFixed(2);
+                confirmationSubtotal.textContent = "$" + totalbeforeDiscount.toFixed(2);
                 const confirmationTotal = document.getElementById("confirmation-total");
                 confirmationTotal.textContent = "$" + (tSubtotal + deliveryFee).toFixed(2);
             }
@@ -246,6 +246,8 @@ function displayOrderSummary(products) {
     // Call the Helper Functions
     // ==============================
 
+
+    
     // Set up the delivery options.
     setupDeliveryOptions();
 

@@ -1096,3 +1096,7 @@ margin: 52px 55%;}
     opacity: 0.5;
     cursor: not-allowed;
 }
+.required-star {
+    color: red;
+    font-weight: 900;
+}
